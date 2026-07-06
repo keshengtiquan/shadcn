@@ -20,6 +20,7 @@ catalog:
   "@types/qs": "^6.15.0"
   "@vitejs/plugin-vue-jsx": "^5.1.5"
   "vxe-table": "4.19.23"
+  "vxe-pc-ui": "4.15.28"
 
   # Tailwind CSS 生态
   "tailwindcss": "^4.2.1"

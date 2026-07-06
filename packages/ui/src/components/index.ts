@@ -30,3 +30,4 @@ export * from "./field";
 export * from "./aspect-ratio";
 export * from "./sonner";
 export * from "./table";
+export * from "./pagination";

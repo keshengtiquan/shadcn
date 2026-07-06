@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "vxe-table": "catalog:",
-    "@vueuse/core": "catalog:"
+    "vxe-pc-ui": "catalog:",
+    "@vueuse/core": "catalog:",
+    "@workspace/ui": "workspace:*"
   },
   "peerDependencies": {
     "vue": "catalog:"
