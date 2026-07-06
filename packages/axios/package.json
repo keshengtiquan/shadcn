@@ -1,0 +1,25 @@
+{
+  "name": "@workspace/axios",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "check-types": "vue-tsc --noEmit",
+    "clean": "rm -rf node_modules"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "axios": "catalog:",
+    "@workspace/utils": "workspace:*",
+    "qs": "catalog:"
+  },
+  "devDependencies": {
+    "@types/qs": "catalog:"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,24 @@
+{
+  "name": "@workspace/vxe-table",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "check-types": "vue-tsc --noEmit",
+    "clean": "rm -rf node_modules"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "vxe-table": "catalog:",
+    "@vueuse/core": "catalog:"
+  },
+  "peerDependencies": {
+    "vue": "catalog:"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

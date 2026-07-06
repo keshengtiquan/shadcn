@@ -1,0 +1,44 @@
+{
+  "name": "@vue-monorepo/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vue-tsc && vite build",
+    "dev": "vite",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.ts,.tsx",
+    "check-types": "vue-tsc --noEmit",
+    "clean": "rm -rf node_modules dist"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "catalog:",
+    "@tanstack/vue-form": "catalog:",
+    "@tanstack/vue-table": "catalog:",
+    "@workspace/axios": "workspace:*",
+    "@workspace/stores": "workspace:*",
+    "@workspace/types": "workspace:*",
+    "@workspace/ui": "workspace:*",
+    "@workspace/vxe-table": "workspace:*",
+    "lucide-vue-next": "catalog:",
+    "pinia": "catalog:",
+    "tailwindcss": "catalog:",
+    "tw-animate-css": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:",
+    "vue-sonner": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vitejs/plugin-vue-jsx": "catalog:",
+    "@vue/tsconfig": "catalog:",
+    "eslint": "catalog:",
+    "eslint-plugin-vue": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-tsconfig-paths": "catalog:",
+    "vue-tsc": "catalog:"
+  }
+}

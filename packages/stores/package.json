@@ -1,0 +1,21 @@
+{
+  "name": "@workspace/stores",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint . --ext .vue,.ts,.tsx",
+    "check-types": "vue-tsc --noEmit",
+    "clean": "rm -rf node_modules"
+  },
+  "dependencies": {
+    "@workspace/types": "workspace:*",
+    "@workspace/utils": "workspace:*",
+    "pinia": "catalog:",
+    "pinia-plugin-persistedstate": "catalog:",
+    "vue": "catalog:"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
