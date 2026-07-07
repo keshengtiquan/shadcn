@@ -16,6 +16,7 @@ const options: RequestClientOptions = {
   onUnauthorized() {
     const authStore = useAuthStore();
     authStore.logout(); // 清除 store 中的 token 和其他状态
+    toast.error('登录已过期，请重新登录')
     router.push("/login");
   },
 };

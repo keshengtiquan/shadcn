@@ -3,6 +3,7 @@ import { LoginParams } from "@/api/login/types";
 import { MenuList } from "@/api/menu/types";
 import { defineStore } from "pinia";
 import { ref } from "vue";
+
 export const useAuthStore = defineStore(
   "auth",
   () => {

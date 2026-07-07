@@ -44,7 +44,7 @@ const form = useForm({
       password: value.password,
     };
     await authStore.login(loginParams);
-    router.push(DEFAULT_HOME_PATH);
+    await router.push(DEFAULT_HOME_PATH);
   },
 });
 function isInvalid(field: any) {

@@ -1,21 +1,29 @@
 <template>
-  <div class="container py-10 mx-auto">
-    <DataTable :columns="columns" :data="tableData" />
+  <div class="px-4 py-6">
+    <TableToolbar searchPlaceholder="菜单名称" :filters="filters"/>
+    <DataTable :columns="columns" :data="tableData"/>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { columns } from "./components/columns";
+import {onMounted, ref} from "vue";
+import {columns,  statuses} from "./components/columns";
 import DataTable from "./components/data-table.vue";
-import { Menu } from "@/api/menu/types";
-import { getMenuListApi } from "@/api/menu";
+import {Menu} from "@/api/menu/types";
+import {getMenuListApi} from "@/api/menu";
+import {TableToolbar} from "@workspace/ui";
 
 export interface MenuTree extends Menu {
   children?: MenuTree[];
 }
 
 const tableData = ref<MenuTree[]>([]);
+const filters = [
+  {
+    title: '类型',
+    options: statuses,
+  },
+]
 
 // 将扁平数据转换成树形结构
 function buildTree(flatData: Menu[]): MenuTree[] {
@@ -23,7 +31,7 @@ function buildTree(flatData: Menu[]): MenuTree[] {
   const roots: MenuTree[] = [];
 
   flatData.forEach((item) => {
-    map.set(item.id, { ...item, children: [] });
+    map.set(item.id, {...item, children: []});
   });
 
   map.forEach((item) => {
@@ -38,7 +46,7 @@ function buildTree(flatData: Menu[]): MenuTree[] {
 }
 
 async function getData() {
-  const { data } = await getMenuListApi();
+  const {data} = await getMenuListApi();
   tableData.value = buildTree(data);
 }
 

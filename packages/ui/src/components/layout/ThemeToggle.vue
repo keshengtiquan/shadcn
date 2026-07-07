@@ -72,7 +72,7 @@ const handleToggle = async (e: MouseEvent) => {
     if (!willBeDark) {
       setTimeout(() => {
         document.documentElement.classList.remove("view-transition-light");
-      }, 550);
+      }, 600);
     }
   });
 };

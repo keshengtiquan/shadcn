@@ -34,7 +34,8 @@
     "vaul-vue": "catalog:",
     "vue-sonner": "catalog:",
     "@tanstack/vue-form": "catalog:",
-    "@tanstack/vue-table": "catalog:"
+    "@tanstack/vue-table": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "catalog:",

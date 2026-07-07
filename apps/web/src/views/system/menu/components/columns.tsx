@@ -4,6 +4,47 @@ import { Button } from "@workspace/ui";
 import { Minus, Plus } from "lucide-vue-next";
 import { h } from "vue";
 
+export const priorities = [
+  {
+    label: 'Low',
+    value: 'low' as const,
+  },
+  {
+    label: 'Medium',
+    value: 'medium' as const,
+  },
+  {
+    label: 'High',
+    value: 'high' as const,
+  },
+  {
+    label: 'Critical',
+    value: 'critical' as const,
+  },
+]
+export const statuses = [
+  {
+    label: 'Backlog',
+    value: 'backlog' as const,
+  },
+  {
+    label: 'Todo',
+    value: 'todo' as const,
+  },
+  {
+    label: 'In Progress',
+    value: 'in progress' as const,
+  },
+  {
+    label: 'Done',
+    value: 'done' as const,
+  },
+  {
+    label: 'Canceled',
+    value: 'canceled' as const,
+  },
+]
+
 export const columns: ColumnDef<MenuTree>[] = [
   {
     id: "expander",
@@ -27,6 +68,7 @@ export const columns: ColumnDef<MenuTree>[] = [
   {
     accessorKey: "title",
     header: "菜单名称",
+    size: 150,
     cell: ({ row }) => {
       return h(
         "span",
@@ -38,26 +80,31 @@ export const columns: ColumnDef<MenuTree>[] = [
   {
     accessorKey: "icon",
     header: "图标",
+    size: 80,
   },
   {
     accessorKey: "path",
     header: "路径",
+    size: 200,
   },
   {
     accessorKey: "menuType",
     header: "类型",
+    size: 100,
   },
   {
     accessorKey: "component",
     header: "组件",
-
+    size: 200,
   },
   {
     accessorKey: "affixTab",
     header: "固定标签",
+    size: 100,
   },
   {
     accessorKey: "affixTabOrder",
     header: "固定标签顺序",
+    size: 120,
   },
 ];

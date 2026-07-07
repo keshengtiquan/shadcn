@@ -31,3 +31,5 @@ export * from "./aspect-ratio";
 export * from "./sonner";
 export * from "./table";
 export * from "./pagination";
+export * from './base-page'
+export * from "./popover"
