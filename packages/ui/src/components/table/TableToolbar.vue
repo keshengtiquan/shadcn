@@ -1,16 +1,35 @@
 <template>
   <div class='flex items-center justify-between'>
     <div class='flex flex-1 flex-col-reverse items-start gap-y-2 sm:flex-row sm:items-center sm:space-x-2'>
-      <Input :placeholder="searchPlaceholder" :value="searchKey" class='h-8 w-37.5 lg:w-62.5'/>
+      <Input
+        :placeholder="searchPlaceholder"
+        v-model="searchText"
+        class='h-8 w-37.5 lg:w-62.5'
+        @keyup.enter="handleSearch"
+      />
       <div class='flex gap-x-2'>
-        <TableDataFacetedFilter v-for="item in filters" :title="item.title" :options="item.options"/>
+        <TableDataFacetedFilter
+          v-for="item in filters"
+          :key="item.title"
+          :title="item.title"
+          :options="item.options"
+          v-model="filterValues[item.fieldName ?? item.title]"
+        />
       </div>
+      <Button variant="outline" class='h-8 px-2 lg:px-3' @click="handleSearch">
+        查询
+      </Button>
+      <Button variant="outline" class='h-8 px-2 lg:px-3' @click="handleReset">
+        重置
+      </Button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import {ref, watch, reactive} from 'vue'
 import {Input} from "../input";
+import {Button} from '@workspace/ui';
 import TableDataFacetedFilter from "./TableDataFacetedFilter.vue";
 
 const props = defineProps<{
@@ -18,6 +37,7 @@ const props = defineProps<{
   searchKey?: string
   filters?: {
     title: string
+    fieldName?: string
     options: {
       label: string
       value: string
@@ -25,6 +45,50 @@ const props = defineProps<{
     }[]
   }[]
 }>()
+
+const emit = defineEmits<{
+  (e: "search", payload: { searchValue: string } & Record<string, string[]>): void
+  (e: "reset"): void
+}>()
+
+const searchText = ref(props.searchKey ?? "")
+
+watch(() => props.searchKey, (val) => {
+  searchText.value = val ?? ""
+})
+
+const filterValues = reactive<Record<string, string[]>>(
+  (props.filters ?? []).reduce((acc, f) => {
+    acc[f.fieldName ?? f.title] = []
+    return acc
+  }, {} as Record<string, string[]>)
+)
+
+watch(() => props.filters, (newFilters) => {
+  const keys = Object.keys(filterValues)
+  keys.forEach(k => delete filterValues[k])
+  ;(newFilters ?? []).forEach(f => {
+    filterValues[f.fieldName ?? f.title] = []
+  })
+}, { deep: true })
+
+const handleSearch = () => {
+  const params: Record<string, string | string[]> = {
+    searchValue: searchText.value,
+  }
+  Object.entries(filterValues).forEach(([key, val]) => {
+    params[key] = val
+  })
+  emit("search", params as { searchValue: string } & Record<string, string[]>)
+}
+
+const handleReset = () => {
+  searchText.value = ""
+  Object.keys(filterValues).forEach(key => {
+    filterValues[key] = []
+  })
+  emit("reset")
+}
 </script>
 
 <style scoped>

@@ -5,6 +5,8 @@
     <TableToolbar
       search-placeholder="搜索用户..."
       :filters="statusFilters"
+      @search="handleSearch"
+      @reset="handleReset"
     />
 
     <div class="border rounded-md">
@@ -170,6 +172,7 @@ const table = useVueTable({
 const statusFilters = [
   {
     title: "角色",
+    fieldName: "role",
     options: [
       { label: "管理员", value: "admin" },
       { label: "编辑", value: "editor" },
@@ -178,6 +181,7 @@ const statusFilters = [
   },
   {
     title: "状态",
+    fieldName: "status",
     options: [
       { label: "在线", value: "online" },
       { label: "离线", value: "offline" },
@@ -187,6 +191,14 @@ const statusFilters = [
 ];
 
 // ---------- helpers ----------
+function handleSearch(params: { searchValue: string } & Record<string, string[]>) {
+  console.log("查询参数:", params)
+}
+
+function handleReset() {
+  console.log("重置")
+}
+
 function roleBadgeClass(role: string): string {
   const map: Record<string, string> = {
     "管理员": "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200",
