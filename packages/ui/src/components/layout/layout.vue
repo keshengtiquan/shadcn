@@ -49,7 +49,7 @@ const handleLogout = () => {
       />
       <TabView :menu-items="menuItems" />
       <div class="flex-1  min-h-0">
-        <div class="flex flex-col h-full">
+        <div class="flex flex-col h-full  overflow-y-auto @container/content">
           <router-view v-slot="{ Component, route }">
             <transition name="slide-right" appear mode="out-in">
               <keep-alive :include="cacheTab">

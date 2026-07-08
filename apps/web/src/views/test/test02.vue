@@ -1,29 +1,29 @@
 <template>
-  <div class="p-6 space-y-6">
+  <BasePage class="flex flex-col gap-3">
     <h1 class="text-2xl font-bold">用户管理</h1>
 
     <TableToolbar
-      search-placeholder="搜索用户..."
-      :filters="statusFilters"
-      @search="handleSearch"
-      @reset="handleReset"
+        search-placeholder="搜索用户..."
+        :filters="statusFilters"
+        @search="handleSearch"
+        @reset="handleReset"
     />
 
     <div class="border rounded-md">
       <Table>
         <TableHeader>
           <TableRow
-            v-for="headerGroup in table.getHeaderGroups()"
-            :key="headerGroup.id"
+              v-for="headerGroup in table.getHeaderGroups()"
+              :key="headerGroup.id"
           >
             <TableHead
-              v-for="header in headerGroup.headers"
-              :key="header.id"
+                v-for="header in headerGroup.headers"
+                :key="header.id"
             >
               <FlexRender
-                v-if="!header.isPlaceholder"
-                :render="header.column.columnDef.header"
-                :props="header.getContext()"
+                  v-if="!header.isPlaceholder"
+                  :render="header.column.columnDef.header"
+                  :props="header.getContext()"
               />
             </TableHead>
           </TableRow>
@@ -32,17 +32,17 @@
         <TableBody>
           <template v-if="table.getRowModel().rows.length">
             <TableRow
-              v-for="row in table.getRowModel().rows"
-              :key="row.id"
-              :data-state="row.getIsSelected() ? 'selected' : undefined"
+                v-for="row in table.getRowModel().rows"
+                :key="row.id"
+                :data-state="row.getIsSelected() ? 'selected' : undefined"
             >
               <TableCell
-                v-for="cell in row.getVisibleCells()"
-                :key="cell.id"
+                  v-for="cell in row.getVisibleCells()"
+                  :key="cell.id"
               >
                 <FlexRender
-                  :render="cell.column.columnDef.cell"
-                  :props="cell.getContext()"
+                    :render="cell.column.columnDef.cell"
+                    :props="cell.getContext()"
                 />
               </TableCell>
             </TableRow>
@@ -58,12 +58,12 @@
         </TableBody>
       </Table>
     </div>
-  </div>
+  </BasePage>
 </template>
 
 <script setup lang="ts">
-import { h } from "vue";
-import type { ColumnDef } from "@tanstack/vue-table";
+import {h} from "vue";
+import type {ColumnDef} from "@tanstack/vue-table";
 import {
   FlexRender,
   getCoreRowModel,
@@ -71,6 +71,7 @@ import {
 } from "@tanstack/vue-table";
 
 import {
+  BasePage,
   Table,
   TableBody,
   TableCell,
@@ -97,33 +98,33 @@ const columns: ColumnDef<User>[] = [
   {
     accessorKey: "name",
     header: "姓名",
-    cell: ({ getValue }) => {
-      return h("span", { class: "font-medium" }, getValue() as string);
+    cell: ({getValue}) => {
+      return h("span", {class: "font-medium"}, getValue() as string);
     },
   },
   {
     accessorKey: "email",
     header: "邮箱",
-    cell: ({ getValue }) => {
-      return h("span", { class: "text-muted-foreground" }, getValue() as string);
+    cell: ({getValue}) => {
+      return h("span", {class: "text-muted-foreground"}, getValue() as string);
     },
   },
   {
     accessorKey: "role",
     header: "角色",
-    cell: ({ getValue }) => {
+    cell: ({getValue}) => {
       const role = getValue() as string;
       const cls = roleBadgeClass(role);
-      return h("span", { class: `inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${cls}` }, role);
+      return h("span", {class: `inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${cls}`}, role);
     },
   },
   {
     accessorKey: "status",
     header: "状态",
-    cell: ({ getValue }) => {
+    cell: ({getValue}) => {
       const status = getValue() as string;
-      return h("span", { class: `inline-flex items-center gap-1.5 text-sm ${statusClass(status)}` }, [
-        h("span", { class: `inline-block size-1.5 rounded-full ${statusDotClass(status)}` }),
+      return h("span", {class: `inline-flex items-center gap-1.5 text-sm ${statusClass(status)}`}, [
+        h("span", {class: `inline-block size-1.5 rounded-full ${statusDotClass(status)}`}),
         status,
       ]);
     },
@@ -135,8 +136,8 @@ const columns: ColumnDef<User>[] = [
   {
     accessorKey: "salary",
     header: "薪资",
-    cell: ({ getValue }) => {
-      return h("span", { class: "tabular-nums" }, `¥${(getValue() as number).toLocaleString("zh-CN")}`);
+    cell: ({getValue}) => {
+      return h("span", {class: "tabular-nums"}, `¥${(getValue() as number).toLocaleString("zh-CN")}`);
     },
   },
   {
@@ -146,16 +147,61 @@ const columns: ColumnDef<User>[] = [
 ];
 
 // ---------- mock data ----------
-const data: User[] = [
-  { id: 1, name: "张三", email: "zhangsan@example.com", role: "管理员", status: "在线", department: "技术部", salary: 18000, createdAt: "2025-01-15" },
-  { id: 2, name: "李四", email: "lisi@example.com", role: "编辑", status: "在线", department: "内容部", salary: 12000, createdAt: "2025-02-20" },
-  { id: 3, name: "王五", email: "wangwu@example.com", role: "访客", status: "离线", department: "市场部", salary: 9000, createdAt: "2025-03-10" },
-  { id: 4, name: "赵六", email: "zhaoliu@example.com", role: "管理员", status: "在线", department: "技术部", salary: 20000, createdAt: "2025-04-05" },
-  { id: 5, name: "孙七", email: "sunqi@example.com", role: "编辑", status: "忙碌", department: "设计部", salary: 13000, createdAt: "2025-05-18" },
-  { id: 6, name: "周八", email: "zhouba@example.com", role: "访客", status: "离线", department: "人事部", salary: 8500, createdAt: "2025-06-22" },
-  { id: 7, name: "吴九", email: "wujiu@example.com", role: "管理员", status: "在线", department: "技术部", salary: 22000, createdAt: "2025-07-30" },
-  { id: 8, name: "郑十", email: "zhengshi@example.com", role: "编辑", status: "忙碌", department: "内容部", salary: 11000, createdAt: "2025-08-14" },
+// 随机工具函数
+const randomPick = <T>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
+const randomNum = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+const randomDate = (startYear: number, endYear: number) => {
+  const year = randomNum(startYear, endYear);
+  const month = String(randomNum(1, 12)).padStart(2, "0");
+  const day = String(randomNum(1, 28)).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+// 随机手机号
+const randomPhone = () => {
+  const prefix = ["135", "138", "139", "158", "188", "177"];
+  return randomPick(prefix) + randomNum(10000000, 99999999);
+};
+
+// 基础枚举数据
+const namePool = ["张三", "李四", "王五", "赵六", "钱七", "孙八", "周九", "吴十"];
+const roleList: User["role"][] = ["管理员", "普通员工", "主管", "实习生"];
+const statusList: User["status"][] = ["在线", "离线", "休假"];
+const deptList = ["技术部", "市场部", "人事部", "财务部", "运营部", "产品部", "行政部"];
+const addressList = [
+  "北京市朝阳区建国路88号",
+  "上海市浦东新区张江科技园",
+  "广州市天河区珠江新城",
+  "深圳市南山区科技园",
+  "杭州市西湖区阿里园区",
+  "成都市高新区天府大道",
+  "西安市雁塔区软件新城"
 ];
+const data: User[] = Array.from({ length: 100 }, (_, index) => {
+  const baseName = randomPick(namePool);
+  const role = randomPick(roleList);
+  const dept = randomPick(deptList);
+  // 分岗位设置薪资区间
+  let salary = 0;
+  if (role === "管理员") salary = randomNum(22000, 35000);
+  else if (role === "主管") salary = randomNum(16000, 24000);
+  else if (role === "普通员工") salary = randomNum(7000, 15000);
+  else salary = randomNum(3000, 6000); // 实习生
+
+  return {
+    id: index + 1,
+    name: `${baseName}${index + 1}`,
+    email: `${baseName}${index + 1}@company.com`,
+    phone: randomPhone(),
+    age: randomNum(20, 48),
+    role,
+    status: randomPick(statusList),
+    department: dept,
+    salary,
+    address: randomPick(addressList),
+    avatar: `https://picsum.photos/id/${randomNum(10, 1000)}/64/64`,
+    createdAt: randomDate(2022, 2026)
+  };
+});
 
 // ---------- table instance ----------
 const table = useVueTable({
@@ -174,18 +220,18 @@ const statusFilters = [
     title: "角色",
     fieldName: "role",
     options: [
-      { label: "管理员", value: "admin" },
-      { label: "编辑", value: "editor" },
-      { label: "访客", value: "guest" },
+      {label: "管理员", value: "admin"},
+      {label: "编辑", value: "editor"},
+      {label: "访客", value: "guest"},
     ],
   },
   {
     title: "状态",
     fieldName: "status",
     options: [
-      { label: "在线", value: "online" },
-      { label: "离线", value: "offline" },
-      { label: "忙碌", value: "busy" },
+      {label: "在线", value: "online"},
+      {label: "离线", value: "offline"},
+      {label: "忙碌", value: "busy"},
     ],
   },
 ];
@@ -202,8 +248,9 @@ function handleReset() {
 function roleBadgeClass(role: string): string {
   const map: Record<string, string> = {
     "管理员": "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200",
-    "编辑": "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200",
-    "访客": "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
+    "实习生": "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200",
+    "普通员工": "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200",
+    "主管": "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
   };
   return map[role] ?? "";
 }
