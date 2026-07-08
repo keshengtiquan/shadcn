@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { GalleryVerticalEnd } from "lucide-vue-next";
+import { GalleryVerticalEnd } from "@lucide/vue";
 import {
   Sidebar,
   SidebarHeader,

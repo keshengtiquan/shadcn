@@ -66,7 +66,7 @@ import {
 import { MenuItem } from "@workspace/types";
 import { Icon } from "../icon";
 import NavBadge from "./NavBadge.vue";
-import { ChevronRight } from "lucide-vue-next";
+import { ChevronRight } from "@lucide/vue";
 import { RouterLink, useRoute } from "vue-router";
 import SidebarMenuCollapsedDropdownItem from "./SidebarMenuCollapsedDropdownItem.vue";
 

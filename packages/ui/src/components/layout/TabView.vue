@@ -33,7 +33,7 @@ import { useRoute } from "vue-router";
 import { useTabbarStore } from "@workspace/stores";
 import type { MenuItem } from "@workspace/types";
 import Tabs from "./Tabs.vue";
-import { ChevronLeft, ChevronRight } from "lucide-vue-next";
+import { ChevronLeft, ChevronRight } from "@lucide/vue";
 
 defineOptions({
   name: "LayoutTabView",

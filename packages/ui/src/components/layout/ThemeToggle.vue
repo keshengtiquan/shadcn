@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { Sun, Moon } from "lucide-vue-next";
+import { Sun, Moon } from "@lucide/vue";
 import { useColorMode } from "@vueuse/core";
 import { Button } from "../button";
 

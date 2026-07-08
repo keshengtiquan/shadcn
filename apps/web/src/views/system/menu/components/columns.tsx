@@ -1,7 +1,7 @@
 import { MenuTree } from "../menu-list.vue";
 import { ColumnDef } from "@tanstack/vue-table";
 import { Button } from "@workspace/ui";
-import { Minus, Plus } from "lucide-vue-next";
+import { Minus, Plus } from "@lucide/vue";
 import { h } from "vue";
 
 export const priorities = [

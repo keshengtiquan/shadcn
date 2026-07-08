@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-import { Maximize, Minimize } from "lucide-vue-next";
+import { Maximize, Minimize } from "@lucide/vue";
 import { Button } from "../button";
 
 const isFullscreen = ref(false);

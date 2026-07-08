@@ -90,7 +90,7 @@ import {
   Separator,
   Badge
 } from "@workspace/ui";
-import {CirclePlus} from 'lucide-vue-next'
+import {CirclePlus} from '@lucide/vue'
 import {computed} from 'vue'
 import {useVModel} from '@vueuse/core'
 import {cn} from "@workspace/ui";

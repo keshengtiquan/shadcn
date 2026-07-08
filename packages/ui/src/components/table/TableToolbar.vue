@@ -17,9 +17,11 @@
         />
       </div>
       <Button variant="outline" class='h-8 px-2 lg:px-3' @click="handleSearch">
+        <Search/>
         查询
       </Button>
       <Button variant="outline" class='h-8 px-2 lg:px-3' @click="handleReset">
+        <RotateCcw />
         重置
       </Button>
     </div>
@@ -31,6 +33,7 @@ import {ref, watch, reactive} from 'vue'
 import {Input} from "../input";
 import {Button} from '@workspace/ui';
 import TableDataFacetedFilter from "./TableDataFacetedFilter.vue";
+import { Search,RotateCcw  } from '@lucide/vue';
 
 const props = defineProps<{
   searchPlaceholder?: string

@@ -20,7 +20,7 @@
     "@workspace/types": "workspace:*",
     "@workspace/ui": "workspace:*",
     "@workspace/vxe-table": "workspace:*",
-    "lucide-vue-next": "catalog:",
+    "@lucide/vue": "catalog:",
     "pinia": "catalog:",
     "tailwindcss": "catalog:",
     "tw-animate-css": "catalog:",

@@ -42,7 +42,6 @@ catalog:
   "class-variance-authority": "^0.7.1"
   "clsx": "^2.1.1"
   "tailwind-merge": "^3.5.0"
-  "lucide-vue-next": "^0.577.0"
   "shadcn": "^4.0.6"
   "@iconify/vue": "^4.3.0"
   "@vueuse/core": "^14.2.1"
@@ -51,3 +50,4 @@ catalog:
   "zod": "^4.3.6"
   "vue-sonner": "^2.0.9"
   "@tanstack/vue-table": "^8.21.3"
+  "@lucide/vue": "^1.23.0"

@@ -54,7 +54,7 @@ import {
 } from "../dropdown-menu";
 import { Badge } from "../badge";
 import { Button } from "../button";
-import { User, LogOut } from "lucide-vue-next";
+import { User, LogOut } from "@lucide/vue";
 
 interface Props {
   userName?: string;

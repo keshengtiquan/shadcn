@@ -84,7 +84,7 @@ import {
   ArrowLeftToLine,
   ArrowRightToLine,
   PanelTopClose,
-} from "lucide-vue-next";
+} from "@lucide/vue";
 import {
   ContextMenu,
   ContextMenuTrigger,

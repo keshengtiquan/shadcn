@@ -34,7 +34,7 @@ import ThemeToggle from "./ThemeToggle.vue";
 import FullscreenToggle from "./FullscreenToggle.vue";
 import UserMenu from "./UserMenu.vue";
 import { Button } from "../button";
-import { RotateCw } from "lucide-vue-next";
+import { RotateCw } from "@lucide/vue";
 import { useTabbarStore } from "@workspace/stores";
 import { UserInfo } from "@workspace/types";
 
