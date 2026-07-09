@@ -25,17 +25,20 @@
         重置
       </Button>
     </div>
+    <TableViewOptions :table="table"/>
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="TData">
 import {ref, watch, reactive} from 'vue'
 import {Input} from "../input";
 import {Button} from '@workspace/ui';
 import TableDataFacetedFilter from "./TableDataFacetedFilter.vue";
 import { Search,RotateCcw  } from '@lucide/vue';
-
+import TableViewOptions from "@workspace/ui/components/table/TableViewOptions.vue";
+import {Table} from '@tanstack/vue-table'
 const props = defineProps<{
+  table: Table<TData>
   searchPlaceholder?: string
   searchKey?: string
   filters?: {

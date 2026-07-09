@@ -46,7 +46,6 @@ interface Props {
 }
 const props = defineProps<Props>();
 onMounted(() => {
-  console.log(props.menuItems);
 })
 </script>
 

@@ -29,7 +29,6 @@ const props = defineProps<Props>();
 
 const { state, isMobile } = useSidebar();
 onMounted(() => {
-  console.log(props.menuItem);
 });
 </script>
 

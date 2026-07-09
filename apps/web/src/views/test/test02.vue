@@ -1,8 +1,15 @@
 <template>
   <BasePage class="flex flex-col gap-3">
-    <h1 class="text-2xl font-bold">用户管理</h1>
+    <div class='flex flex-wrap items-end justify-between gap-2'>
+      <div>
+        <h2 class='text-2xl font-bold tracking-tight'>用户管理</h2>
+        <p class='text-muted-foreground'>
+        </p>
+      </div>
+    </div>
 
     <TableToolbar
+        :table="table"
         search-placeholder="搜索用户..."
         :filters="statusFilters"
         @search="handleSearch"
@@ -78,7 +85,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  TableToolbar,
+  TableToolbar
 } from "@workspace/ui";
 
 // ---------- types ----------
@@ -97,7 +104,10 @@ interface User {
 const columns: ColumnDef<User>[] = [
   {
     accessorKey: "name",
-    header: "姓名",
+    meta: { title: '姓名' },
+    header: () => {
+      return h('div', {}, '姓名')
+    },
     cell: ({getValue}) => {
       return h("span", {class: "font-medium"}, getValue() as string);
     },
@@ -108,6 +118,7 @@ const columns: ColumnDef<User>[] = [
     cell: ({getValue}) => {
       return h("span", {class: "text-muted-foreground"}, getValue() as string);
     },
+    enableHiding: false
   },
   {
     accessorKey: "role",
