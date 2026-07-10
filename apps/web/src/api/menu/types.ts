@@ -25,3 +25,24 @@ export interface MenuList {
 }
 
 export interface Menu extends MenuList {}
+
+/** 创建菜单参数（排除服务端自动生成的字段） */
+export interface CreateMenuParams {
+  parentId: string;
+  name: string;
+  title: string;
+  icon: string;
+  path: string;
+  order: number;
+  menuType: string;
+  component: string;
+  hideInMenu: boolean;
+  badge: string;
+  affixTab: boolean;
+  keepAlive: boolean;
+  hideInTab: boolean;
+  affixTabOrder: number;
+  query: string;
+  iframeSrc: string;
+  status: boolean;
+}

@@ -33,3 +33,6 @@ export * from "./table";
 export * from "./pagination";
 export * from './base-page'
 export * from "./popover"
+export * from "./radio-group"
+export * from "./switch"
+export * from "./select"

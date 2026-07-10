@@ -1,47 +1,21 @@
-import { MenuTree } from "../menu-list.vue";
 import { ColumnDef } from "@tanstack/vue-table";
 import { Button } from "@workspace/ui";
 import { Minus, Plus } from "@lucide/vue";
 import { h } from "vue";
+import {MenuTree} from "@/views/system/menu/menu-list.vue";
 
-export const priorities = [
-  {
-    label: 'Low',
-    value: 'low' as const,
-  },
-  {
-    label: 'Medium',
-    value: 'medium' as const,
-  },
-  {
-    label: 'High',
-    value: 'high' as const,
-  },
-  {
-    label: 'Critical',
-    value: 'critical' as const,
-  },
-]
 export const statuses = [
   {
-    label: 'Backlog',
-    value: 'backlog' as const,
+    label: '文件夹',
+    value: 'M' as const,
   },
   {
-    label: 'Todo',
-    value: 'todo' as const,
+    label: '菜单',
+    value: 'C' as const,
   },
   {
-    label: 'In Progress',
-    value: 'in progress' as const,
-  },
-  {
-    label: 'Done',
-    value: 'done' as const,
-  },
-  {
-    label: 'Canceled',
-    value: 'canceled' as const,
+    label: '按钮',
+    value: 'F' as const,
   },
 ]
 

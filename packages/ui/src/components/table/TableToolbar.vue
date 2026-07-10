@@ -16,11 +16,7 @@
           v-model="filterValues[item.fieldName ?? item.title]"
         />
       </div>
-      <Button variant="outline" class='h-8 px-2 lg:px-3' @click="handleSearch">
-        <Search/>
-        查询
-      </Button>
-      <Button variant="outline" class='h-8 px-2 lg:px-3' @click="handleReset">
+      <Button v-if="hasSearchConditions" variant="outline" class='h-8 px-2 lg:px-3' @click="handleReset">
         <RotateCcw />
         重置
       </Button>
@@ -30,13 +26,14 @@
 </template>
 
 <script setup lang="ts" generic="TData">
-import {ref, watch, reactive} from 'vue'
+import {ref, watch, reactive, computed} from 'vue'
 import {Input} from "../input";
 import {Button} from '@workspace/ui';
 import TableDataFacetedFilter from "./TableDataFacetedFilter.vue";
-import { Search,RotateCcw  } from '@lucide/vue';
+import {RotateCcw} from '@lucide/vue';
 import TableViewOptions from "@workspace/ui/components/table/TableViewOptions.vue";
 import {Table} from '@tanstack/vue-table'
+import {debounce} from "@workspace/utils"
 const props = defineProps<{
   table: Table<TData>
   searchPlaceholder?: string
@@ -59,6 +56,8 @@ const emit = defineEmits<{
 
 const searchText = ref(props.searchKey ?? "")
 
+const isResetting = ref(false)
+
 watch(() => props.searchKey, (val) => {
   searchText.value = val ?? ""
 })
@@ -70,6 +69,11 @@ const filterValues = reactive<Record<string, string[]>>(
   }, {} as Record<string, string[]>)
 )
 
+const hasSearchConditions = computed(() => {
+  if (searchText.value) return true
+  return Object.values(filterValues).some(arr => arr.length > 0)
+})
+
 watch(() => props.filters, (newFilters) => {
   const keys = Object.keys(filterValues)
   keys.forEach(k => delete filterValues[k])
@@ -78,7 +82,8 @@ watch(() => props.filters, (newFilters) => {
   })
 }, { deep: true })
 
-const handleSearch = () => {
+const emitSearch = () => {
+  if (isResetting.value) return
   const params: Record<string, string | string[]> = {
     searchValue: searchText.value,
   }
@@ -88,12 +93,31 @@ const handleSearch = () => {
   emit("search", params as { searchValue: string } & Record<string, string[]>)
 }
 
+const debouncedSearch = debounce(emitSearch, 300)
+
+// watch(searchText, () => {
+//   debouncedSearch()
+// })
+
+watch(filterValues, () => {
+  debouncedSearch()
+}, { deep: true })
+
+const handleSearch = () => {
+  // 回车立即搜索，不防抖
+  emitSearch()
+}
+
 const handleReset = () => {
+  isResetting.value = true
   searchText.value = ""
   Object.keys(filterValues).forEach(key => {
     filterValues[key] = []
   })
   emit("reset")
+  setTimeout(() => {
+    isResetting.value = false
+  }, 400)
 }
 </script>
 
