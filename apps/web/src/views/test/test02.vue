@@ -1,13 +1,9 @@
 <template>
-  <BasePage class="flex flex-col gap-3">
-    <div class='flex flex-wrap items-end justify-between gap-2'>
-      <div>
-        <h2 class='text-2xl font-bold tracking-tight'>用户管理</h2>
-        <p class='text-muted-foreground'>
-        </p>
-      </div>
-    </div>
-
+  <BasePage title="用户管理" sub-title="测试副标题">
+    <template #extra>
+      <Button>添加</Button>
+      <Button>添加</Button>
+    </template>
     <TableToolbar
         :table="table"
         search-placeholder="搜索用户..."
@@ -16,7 +12,7 @@
         @reset="handleReset"
     />
 
-    <div class="border rounded-md">
+    <div class="border rounded-md ">
       <Table>
         <TableHeader>
           <TableRow
@@ -65,16 +61,19 @@
         </TableBody>
       </Table>
     </div>
+    <TablePagination :table="table"/>
   </BasePage>
+
 </template>
 
 <script setup lang="ts">
-import {h} from "vue";
+import {h, ref,reactive} from "vue";
 import type {ColumnDef} from "@tanstack/vue-table";
 import {
   FlexRender,
   getCoreRowModel,
   useVueTable,
+  getPaginationRowModel
 } from "@tanstack/vue-table";
 
 import {
@@ -85,7 +84,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  TableToolbar
+  TableToolbar,
+  Button,
+  TablePagination
 } from "@workspace/ui";
 
 // ---------- types ----------
@@ -104,7 +105,7 @@ interface User {
 const columns: ColumnDef<User>[] = [
   {
     accessorKey: "name",
-    meta: { title: '姓名' },
+    meta: {title: '姓名'},
     header: () => {
       return h('div', {}, '姓名')
     },
@@ -187,7 +188,7 @@ const addressList = [
   "成都市高新区天府大道",
   "西安市雁塔区软件新城"
 ];
-const data: User[] = Array.from({ length: 100 }, (_, index) => {
+const originalData: User[] = Array.from({length: 100}, (_, index) => {
   const baseName = randomPick(namePool);
   const role = randomPick(roleList);
   const dept = randomPick(deptList);
@@ -214,15 +215,32 @@ const data: User[] = Array.from({ length: 100 }, (_, index) => {
   };
 });
 
+const data = ref(originalData);
+const pagination = reactive({
+  pageIndex: 2,
+  pageSize: 10,
+})
+
+// ---------- table instance ----------
 // ---------- table instance ----------
 const table = useVueTable({
   get data() {
-    return data;
+    return data.value.slice(1, 10);
   },
   get columns() {
     return columns;
   },
+  state: {
+    pagination,
+  },
+  rowCount: 100,
+  manualPagination: false,
   getCoreRowModel: getCoreRowModel(),
+  getPaginationRowModel: getPaginationRowModel(),
+  onPaginationChange: (updater) => {
+    const next = typeof updater === 'function' ? updater(pagination) : updater
+    console.log(next, pagination)
+  }
 });
 
 // ---------- toolbar filters ----------

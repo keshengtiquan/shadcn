@@ -3,13 +3,24 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
+    "build": "tsup",
     "lint": "eslint . --ext .vue,.ts,.tsx",
     "check-types": "vue-tsc --noEmit",
-    "clean": "rm -rf node_modules"
+    "clean": "rm -rf node_modules dist"
   },
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "devDependencies": {
+    "tsup": "catalog:"
   },
   "keywords": [],
   "author": "",
