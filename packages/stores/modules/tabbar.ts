@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import type { Tab } from "@workspace/types";
-import { startProgress, stopProgress } from "@workspace/utils";
 
 export const useTabbarStore = defineStore("core-tabbar", {
   state: () => ({
@@ -135,10 +134,8 @@ export const useTabbarStore = defineStore("core-tabbar", {
      */
     async refresh() {
       this.$state.renderRouteView = false;
-      startProgress();
       await new Promise((resolve) => setTimeout(resolve, 200));
       this.$state.renderRouteView = true;
-      stopProgress();
     },
 
     /**

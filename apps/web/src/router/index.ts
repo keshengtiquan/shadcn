@@ -4,7 +4,7 @@ import {
   createWebHistory,
 } from "vue-router";
 import { routes } from "./routes";
-// import { createRouterGuard } from "./guard";
+import { createRouterGuard } from "./guard";
 
 /**
  *  @zh_CN 创建vue-router实例
@@ -26,6 +26,6 @@ const router = createRouter({
   // strict: true,
 });
 
-// createRouterGuard(router);
+createRouterGuard(router);
 
 export default router;

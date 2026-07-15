@@ -52,3 +52,47 @@ catalog:
   "vue-sonner": "^2.0.9"
   "@tanstack/vue-table": "^8.21.3"
   "@lucide/vue": "^1.23.0"
+
+    # backend deps
+  "@nestjs/cli": ^11.0.0
+  "@nestjs/common": ^11.0.1
+  "@nestjs/config": ^4.0.2
+  "@nestjs/core": ^11.0.1
+  "@nestjs/jwt": ^11.0.2
+  "@nestjs/passport": ^11.0.5
+  "@nestjs/platform-express": ^11.0.1
+  "@nestjs/schematics": ^11.0.0
+  "@nestjs/swagger": ^11.2.5
+  "@nestjs/testing": ^11.0.1
+  "@types/express": ^5.0.0
+  "@types/jest": ^30.0.0
+  "@types/pg": ^8.11.0
+  "@types/supertest": ^6.0.2
+  bcryptjs: ^3.0.3
+  cross-env: ^10.1.0
+  dayjs: ^1.11.19
+  dotenv: ^17.2.3
+  drizzle-kit: ^0.31.8
+  drizzle-orm: ^0.45.1
+  eslint-config-prettier: ^10.0.1
+  eslint-plugin-prettier: ^5.2.2
+  globals: ^16.0.0
+  jest: ^30.0.0
+  js-yaml: ^4.1.1
+  nestjs-cls: ^6.2.0
+  nestjs-zod: ^5.3.0
+  passport-jwt: ^4.0.1
+  path-to-regexp: ^8.3.0
+  pg: ^8.13.0
+  prettier: ^3.4.2
+  reflect-metadata: ^0.2.2
+  rxjs: ^7.8.1
+  source-map-support: ^0.5.21
+  supertest: ^7.0.0
+  ts-jest: ^29.2.5
+  ts-loader: ^9.5.2
+  ts-node: ^10.9.2
+  tsconfig-paths: ^4.2.0
+  typescript-eslint: ^8.20.0
+  useragent: ^2.3.0
+  uuid: ^14.0.0

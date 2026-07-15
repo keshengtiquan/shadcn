@@ -8,6 +8,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsup",
+    "dev": "tsup --watch",
     "lint": "eslint . --ext .vue,.ts,.tsx",
     "check-types": "vue-tsc --noEmit",
     "clean": "rm -rf node_modules dist"
@@ -15,7 +16,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
   "files": ["dist"],

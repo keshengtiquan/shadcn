@@ -25,6 +25,7 @@ async function loadDynamicRoutes(
 
   // 生成并添加动态路由
   const dynamicRoutes = generateRoutesFromMenuList(authStore.menuList);
+  console.log(dynamicRoutes)
   dynamicRoutes.forEach((route) => {
     router.addRoute(route);
   });

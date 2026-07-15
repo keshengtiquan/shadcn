@@ -1,0 +1,21 @@
+CREATE TABLE "sys_user" (
+	"id" varchar(36) PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"dept_id" serial NOT NULL,
+	"user_name" varchar(30) NOT NULL,
+	"nick_name" varchar(30) NOT NULL,
+	"user_type" varchar(2) NOT NULL,
+	"email" varchar(50) DEFAULT '' NOT NULL,
+	"phonenumber" varchar(11) DEFAULT '' NOT NULL,
+	"sex" char(1) DEFAULT '0' NOT NULL,
+	"avatar" varchar(255) DEFAULT '' NOT NULL,
+	"password" varchar(200) NOT NULL,
+	"status" char(1) DEFAULT '0' NOT NULL,
+	"del_flag" char(1) DEFAULT '0' NOT NULL,
+	"login_ip" varchar(128) DEFAULT '' NOT NULL,
+	"login_date" timestamp with time zone,
+	"create_by" varchar(64) DEFAULT '' NOT NULL,
+	"create_time" timestamp with time zone DEFAULT now() NOT NULL,
+	"update_by" varchar(64) DEFAULT '' NOT NULL,
+	"update_time" timestamp with time zone DEFAULT now() NOT NULL,
+	"remark" varchar(500)
+);
